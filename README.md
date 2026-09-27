@@ -4,7 +4,7 @@ Simple Calendar assistant for the **Development of AI Applications** course fina
 
 ## Team members
 
-- Tomi Kitola (@student.hamk.fi)
+- Tomi Kitola (tomi.kitola@student.hamk.fi)
 - Jaakko Ruhanen (jaakko.ruhanen@student.hamk.fi)
 - Timofey Krylov (timofey.krylov@student.hamk.fi)
 
