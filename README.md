@@ -6,7 +6,7 @@ Simple Calendar assistant for the **Development of AI Applications** course fina
 
 - Tomi Kitola (email@example.com)
 - Jaakko Ruhanen (email@example.com)
-- Member 3 Name (email@example.com)
+- Timofey Krylov (timagibor@gmail.com)
 
 ## Problem
 Calendar usage is time consuming work, and people are lazy.
