@@ -12,3 +12,5 @@ dependencies:
       - pydantic
       - python-dotenv
       - pytest
+      - mcp
+      - mcp-server-time
