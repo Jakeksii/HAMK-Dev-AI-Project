@@ -1,3 +1,4 @@
+
 from typing import Optional
 import ollama
 from src.config import config
@@ -29,7 +30,7 @@ class OllamaModelClient:
     def generate(self, prompt: str) -> str:
         """
         Sends a user prompt to local Ollama model and returns generated response text.
-        
+
         Raises ModelClientError subclass if connection or execution fails.
         """
         try:
@@ -37,8 +38,7 @@ class OllamaModelClient:
                 model=self.model_name,
                 messages=[{"role": "user", "content": prompt}],
             )
-            
-            # Standardize extraction from dict or chat response object
+
             if isinstance(response, dict):
                 return response.get("message", {}).get("content", "")
             elif hasattr(response, "message") and hasattr(response.message, "content"):
@@ -46,14 +46,41 @@ class OllamaModelClient:
             return str(response)
 
         except Exception as err:
-            err_str = str(err).lower()
-            if "connection" in err_str or "connect" in err_str or "refused" in err_str:
-                raise OllamaConnectionError(
-                    f"Failed to connect to Ollama service at {self.base_url}."
-                ) from err
-            elif "not found" in err_str or "404" in err_str:
-                raise ModelNotFoundError(
-                    f"Model '{self.model_name}' is not installed in local Ollama."
-                ) from err
-            else:
-                raise ModelClientError(f"Error communicating with Ollama: {err}") from err
+            self._raise_error(err)
+
+    def chat(self, messages: list, tools: Optional[list] = None):
+        """
+        Sends the whole conversation and the available tools to the model.
+
+        Returns the model's reply message. If the model wants to use a tool,
+        reply.tool_calls has the calls, otherwise reply.content has the answer.
+        """
+        try:
+            response = self._client.chat(
+                model=self.model_name,
+                messages=messages,
+                tools=tools,
+            )
+            return response.message
+
+        except Exception as err:
+            self._raise_error(err)
+
+    def _raise_error(self, err: Exception):
+        """Converts a raw Ollama exception into one of our own exceptions."""
+        err_str = str(err).lower()
+
+        if "connection" in err_str or "connect" in err_str or "refused" in err_str:
+            raise OllamaConnectionError(
+                f"Failed to connect to Ollama service at {self.base_url}."
+            ) from err
+
+        elif "not found" in err_str or "404" in err_str:
+            raise ModelNotFoundError(
+                f"Model '{self.model_name}' is not installed in local Ollama."
+            ) from err
+
+        else:
+            raise ModelClientError(
+                f"Error communicating with Ollama: {err}"
+            ) from err
