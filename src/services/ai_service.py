@@ -9,7 +9,7 @@ from src.models.model_client import (
     OllamaConnectionError,
     ModelNotFoundError,
 )
-from src.prompts import build_system_prompt
+from src.source import build_system_prompt
 from src.schemas.responses import UserRequest, AIResponse
 
 
