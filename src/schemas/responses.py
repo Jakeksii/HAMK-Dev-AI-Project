@@ -1,10 +1,13 @@
 from pydantic import BaseModel, Field
 
+# Long enough for a forwarded email, short enough to keep the prompt small.
+MAX_MESSAGE_LENGTH = 4000
+
 
 class UserRequest(BaseModel):
     """Minimal schema for validating incoming user input."""
 
-    message: str = Field(..., description="The user's prompt or message.")
+    message: str = Field(..., max_length=MAX_MESSAGE_LENGTH, description="The user's prompt or message.")
 
 
 class AIResponse(BaseModel):
