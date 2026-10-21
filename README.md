@@ -106,6 +106,12 @@ MODEL_NAME=qwen2.5
 
 ### 4. Start Ollama
 
+#### 4a. For better results run gemma4
+```bash
+ollama run gemma4:31b-cloud
+```
+Remember to set it in .env
+#### 4b. For local testing run qwen2.5
 Make sure Ollama is installed and running locally, then pull your configured model:
 
 ```bash
@@ -114,6 +120,10 @@ ollama run qwen2.5
 
 ### 5. Run the application
 
+#### 5a. Extract gcp-oauth.keys.zip
+Extract to repo root!
+
+#### 5b. Start app
 Run the application from the root directory of the project:
 
 ```bash
@@ -121,6 +131,8 @@ python -m app.main
 ```
 
 Then open your browser at `http://localhost:7860`.
+
+> NOTE: first response will take some time because the MCP oAuth autoruns after first prompt.
 
 ### 6. Run automated tests
 
