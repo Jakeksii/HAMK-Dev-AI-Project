@@ -53,7 +53,7 @@ Ollama (Local LLM Server)
 ## Model
 
 - **Model used:** e.g., `Qwen2.5` (or specified local Ollama model)
-- **Selection rationale:** `qwen2.5:14b-instruct` balances reliable tool-calling accuracy with local reproducibility, running at Q4 on a single consumer GPU (~10GB VRAM) with no API costs.
+- **Selection rationale:** `gemma4:31b-cloud` balances reliable tool-calling accuracy with local reproducibility, running at Q4 on a single consumer GPU (~10GB VRAM) with no API costs.
 
 ## Additional AI capability
 
@@ -101,7 +101,7 @@ copy .env.example .env
 Ensure `.env` contains valid values for `OLLAMA_BASE_URL` and `MODEL_NAME`:
 ```env
 OLLAMA_BASE_URL=http://localhost:11434
-MODEL_NAME=qwen2.5
+MODEL_NAME=gemma4:31b-cloud
 ```
 
 ### 4. Start Ollama
