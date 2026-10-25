@@ -156,3 +156,8 @@ Refer to [`evaluation/README.md`](evaluation/README.md) for guidelines on defini
 
 - voice recoqnition tts/stt
 
+
+## 🎥 Project Demo
+
+Watch our project demonstration to see the application in action.
+[▶ Watch the full video on YouTube](https://youtu.be/gS0dGnMYkng)
